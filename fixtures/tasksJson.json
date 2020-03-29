@@ -1,0 +1,8 @@
+{
+    "short_title": "Short task title",
+    "long_title": "This is a long task title with more than 20 caracters",
+    "tags": ["tag_one","tag_two","tag_three"],
+    "wrong_tags": ["tag_one_with_more_than_20_caracters","tag_two","tag_three"],
+    "long_list_tags": ["tag_one","tag_two","tag_three","tag_four","tag_five","tag_six","tag_seven", "tag_eight", "tag_nine"],
+    "long_list_count_tags" : 9
+}
