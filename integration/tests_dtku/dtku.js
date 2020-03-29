@@ -14,6 +14,8 @@ describe('Dataiku API Testing', () => {
     beforeEach (function () { 
         //Loading tasks fixture 
         cy.fixture('tasksJson').as('tasksData')
+        //Loading users fixture
+        cy.fixture('usersJson').as('usersData')
     }) 
     it('Add task using request : PASSING CASE', () => {
 
@@ -82,21 +84,23 @@ describe('Dataiku API Testing', () => {
     })   
  
     it('POST /users Method', () => {
-        cy.request(
-        { 
-            method: "POST", 
-            url: "/users", 
-            headers : { 
-                'Content-Type': 'application/json', 
-            }, 
-            body: { 
-                "username" : "Thierry", 
-                "password" : "toto", 
-            } 
-            }).then((response) => { 
-                cy.log (response.body) 
-                expect(response.status).to.equal(200); 
-        }); 
+        cy.get('@usersData').then((usersData) => {
+            cy.request(
+            { 
+                method: "POST", 
+                url: "/users", 
+                headers : { 
+                    'Content-Type': 'application/json', 
+                }, 
+                body: { 
+                    "username" : usersData.username, 
+                    "password" : usersData.password 
+                } 
+                }).then((response) => { 
+                    cy.log (response.body.username)
+                    expect(response.status).to.equal(200); 
+            });
+        })    
     }) 
     it('List of all existing tags /GET', (tags_count=2) => { 
         cy.request({ 
@@ -140,7 +144,7 @@ describe('Dataiku API Testing', () => {
             expect(response.status).to.equal(200);
         });
     })
-    /*it('DELETE Method', (task_id=2) => { 
+    it('DELETE Method', (task_id=2) => { 
         cy.request({ 
             method: "DELETE", 
             url: "/" + task_id, 
@@ -151,5 +155,5 @@ describe('Dataiku API Testing', () => {
             .then((response) => { 
                 cy.log (response.body) 
             expect(response.status).to.equal(200); });
-        })*/
+    })
 })
