@@ -82,7 +82,6 @@ describe('Dataiku API Testing', () => {
         })
         
     })   
- 
     it('POST /users Method', () => {
         cy.get('@usersData').then((usersData) => {
             cy.request(
@@ -102,15 +101,11 @@ describe('Dataiku API Testing', () => {
             });
         })    
     }) 
-    it('List of all existing tags /GET', (tags_count=2) => { 
-        cy.request({ 
-            method: "GET", 
-            url: "/", 
-            failOnStatusCode: false 
-        }).then((response) => { 
-            expect(response.status).to.equal(200);
-            expect(response.body).to.have.length(tags_count)
-        });
+    it('List of all existing tags /GET', () => { 
+        //At this part of the API test, "2" new tasks should have been created
+        //I can check that and also the number of tags inside each created task.    
+        cy.verifyTags(2)
+
     })
     it('List of all existing tags /task_id GET',  (task_id=1) => { 
         cy.get('@tasksData').then((tasksData) => {
@@ -144,16 +139,10 @@ describe('Dataiku API Testing', () => {
             expect(response.status).to.equal(200);
         });
     })
-    it('DELETE Method', (task_id=2) => { 
-        cy.request({ 
-            method: "DELETE", 
-            url: "/" + task_id, 
-            headers : { 
-                'Content-Type':'application/json', 
-                'authorization': "Basic " + 'UUE6d2lsbFdpbg==' }, 
-                failOnStatusCode: true, })
-            .then((response) => { 
-                cy.log (response.body) 
-            expect(response.status).to.equal(200); });
+    it('DELETE Method', () => {
+        
+        //Create a cypress delete task function 
+        //I chose task number "2" for my deleting test  
+        cy.deleteTask(2)
     })
 })
