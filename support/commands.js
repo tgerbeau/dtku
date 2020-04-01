@@ -43,9 +43,7 @@ Cypress.Commands.add("login",() => {
     
     Cypress.Commands.add("login_HTTP", () => { 
         cy.visit('/web/index.html') 
-        cy.get('input[placeholder=Username]').type('QA') 
-        cy.get('input[placeholder=Password]').type('willWin') 
-        cy.contains('Sign in').click() 
+        //TODO HTTP REQUEST WITH USERNAME/PASSWORD  
     })
     
     Cypress.Commands.add("deleteTask", (task_id) => {
