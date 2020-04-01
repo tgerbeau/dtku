@@ -39,6 +39,19 @@ Vérifier que l'on ne puisse pas supprimer une task que pour laquelle nous ne so
 
 Méthode PATCH : CAS NON PASSANT 
 
-Même avec un titre supérieur à 20 caractères, la méthode PATCH ne renvoit pas d'erreur.  
+Même avec un titre supérieur à 20 caractères, la méthode PATCH ne renvoit pas d'erreur.
 
-## 2) Single page apllication web UI:  
+Pour vérifier la réponse de la Méthode /GET, il faut faire une fixture avec le même schéma JSON que la réponse renvoyée par la méthode /GET. 
+
+Ainsi, on pourra comparer si le schéma retourné est conforme à celui attendu (celui préalablement défini par notre fixture)     
+
+## 2) Single page application web UI:  
+
+Les tags ont bien une contrainte pour ne pas dépasser 20 charactères. 
+
+Les titres n'ont pas cette contrainte. Il devrait y en avoir une. 
+
+Le status de la tache (ex: In Progress) n'est pas clairement visible et nécessite un surlignage pour pouvoir être lu.
+
+On ne peut pas aoouter ou supprimer un tag dans le mode "Edit" 
+
